@@ -1,0 +1,15 @@
+/*A fast scheme for evaluating a polynomial such as:
+-19+7x-4x^2+6x^3\,
+when
+x=3\;.
+is to arrange the computation as follows:
+((((0) x + 6) x + (-4)) x + 7) x + (-19)\;*/
+
+
+long long solve(long long x){
+    long long ret=coef[0];
+    int i;
+    for(i=0;i<n;i++)
+        ret = ret*x + coef[i+1];
+    return ret;
+}
