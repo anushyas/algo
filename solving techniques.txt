@@ -1,0 +1,22 @@
+if you are not able to convert recursion to dp .. try this ... something is better than nothing 
+int dp[100][502][502]; //global 
+int isSubsetSum (int d[],int a[],int n,int h,int j)
+{
+   if (n == 0)
+     return dp[n][h][j] = 0;
+	if(h<=0 )
+		return 0;
+	if(j<=0 )
+		return 0;
+	
+   if(dp[n][h][j] != -1) return dp[n][h][j];    //simple implementation of dp
+ 
+   if (d[n-1] >= h || a[n-1] >= j) {
+     return dp[n][h][j] = isSubsetSum (d,a,n-1,h,j);
+   }
+
+	int m =  isSubsetSum (d,a,n-1,h,j);
+	int l =	isSubsetSum (d,a,n-1, h - d[n-1],j - a[n-1]) + 1;
+ 	return dp[n][h][j] = max(m,l);
+}
+
